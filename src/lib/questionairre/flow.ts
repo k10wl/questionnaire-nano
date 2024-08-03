@@ -99,13 +99,13 @@ const emotionalControl = new Question('Is emotional control tricky for you?', [
 
 const whatIsText =
   'So how does it work? We analyze hundreds of data points to create your unique astrological blueprint. This is combined with AI to tailor-make your astrological insights, based on your answers. We’re going to change your relationship with astrology.'
-const whatIsButton = 'Next'
-
+const next = 'Next'
+// TODO this must have 2 elements to render, quotes are in other font
 const singleWhatIsYes = new Question(whatIsText, [
-  new Choice(whatIsButton, importantTraits)
+  new Choice(next, importantTraits)
 ])
 const singleWhatIsNo = new Question(whatIsText, [
-  new Choice(whatIsButton, emotionalControl)
+  new Choice(next, emotionalControl)
 ])
 
 const tendToOverthink = new Question('Do you tend to overthink?', [
@@ -148,32 +148,3 @@ const prelanding = new Question('Select your gender:', [
 ])
 
 export const questionnaireChain = prelanding
-
-////////////////////
-type Gender = 'male' | 'female'
-type PsychoType = 'introverted' | 'extraverted'
-
-type Single = {
-  isParent: boolean
-  problem: string
-  overthinking: boolean
-  important: string
-  control: string
-}
-
-type Relationship = {
-  isParent: boolean
-  problem: string
-  partnerPsychoType: PsychoType
-  partnerGernder: Gender
-  partnerPriority: string
-  relationshipGoals: string
-  aboutUs: string
-}
-
-type Results = {
-  gender: Gender
-  relationship: Relationship
-  single: Single
-  aboutUs: string
-}

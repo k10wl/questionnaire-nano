@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>Questionnaire</title>
       </Head>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </Provider>
   )
 }
