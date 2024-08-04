@@ -1,15 +1,12 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 
-const user = createSlice({
-  name: 'user',
-  initialState: {},
-  reducers: {}
-})
+import { questionnaire } from './questionnaire'
 
 export const store = configureStore({
   reducer: {
-    user: user.reducer
-  }
+    questionnaire: questionnaire.reducer
+  },
+  middleware: (d) => d({ serializableCheck: false })
 })
 
 export type AppStore = typeof store

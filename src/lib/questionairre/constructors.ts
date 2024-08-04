@@ -21,14 +21,16 @@ export class Question {
   text: string
   options: Choice[]
   prev?: Question
+  special?: boolean
 
   clone(): Question {
-    return new Question(this.text, this.options)
+    return new Question(this.text, this.options, this.special)
   }
 
-  constructor(text: string, options: Choice[]) {
+  constructor(text: string, options: Choice[], special?: boolean) {
     this.text = text
     this.options = options
     this.options.forEach((option) => option.setPrev(this))
+    this.special = special
   }
 }

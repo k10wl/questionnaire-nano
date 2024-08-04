@@ -101,12 +101,16 @@ const whatIsText =
   'So how does it work? We analyze hundreds of data points to create your unique astrological blueprint. This is combined with AI to tailor-make your astrological insights, based on your answers. We’re going to change your relationship with astrology.'
 const next = 'Next'
 // TODO this must have 2 elements to render, quotes are in other font
-const singleWhatIsYes = new Question(whatIsText, [
-  new Choice(next, importantTraits)
-])
-const singleWhatIsNo = new Question(whatIsText, [
-  new Choice(next, emotionalControl)
-])
+const singleWhatIsYes = new Question(
+  whatIsText,
+  [new Choice(next, importantTraits)],
+  true
+)
+const singleWhatIsNo = new Question(
+  whatIsText,
+  [new Choice(next, emotionalControl)],
+  true
+)
 
 const tendToOverthink = new Question('Do you tend to overthink?', [
   new Choice('Yes', singleWhatIsYes),
