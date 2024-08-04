@@ -6,9 +6,14 @@ type State = {
   question: Question
   answers: [string, string][]
   last?: [string, string]
+  meta: Record<string, any>
 }
 
-const initialState: State = { question: questionnaireChain, answers: [] }
+const initialState: State = {
+  question: questionnaireChain,
+  answers: [],
+  meta: {}
+}
 
 export const questionnaire = createSlice({
   name: 'questionnaire',
@@ -19,6 +24,7 @@ export const questionnaire = createSlice({
       data: PayloadAction<{
         question: Question
         asnwer?: [string, string]
+        meta?: Record<string, any>
       }>
     ) {
       state.question = data.payload.question
@@ -27,6 +33,9 @@ export const questionnaire = createSlice({
         delete state.last
       } else {
         state.last = state.answers.pop()
+      }
+      if (data.payload.meta) {
+        Object.assign(state.meta, data.payload.meta)
       }
     }
   }

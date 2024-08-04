@@ -1,10 +1,20 @@
 export class Choice {
   text: string
   next?: Question
+  meta?: Record<string, unknown>
 
-  constructor(text: string, next?: Question) {
+  constructor({
+    text,
+    next,
+    meta
+  }: {
+    text: string
+    next?: Question
+    meta?: Record<string, any>
+  }) {
     this.text = text
     this.next = next
+    this.meta = meta
   }
 
   setPrev(prev: Question) {
@@ -34,6 +44,22 @@ export class Question {
       prev: this.prev,
       special: this.special
     })
+  }
+
+  getText(arg?: Record<string, string>): string {
+    if (!arg || typeof arg !== 'object') {
+      return this.text
+    }
+    let text = this.text
+    const arbitrary = text.match(/{([A-z]+)}/gm)
+    arbitrary?.forEach((val) => {
+      const key = val.match(/[A-z]+/gm)
+      if (!key || !(key[0] in arg)) {
+        return
+      }
+      text = text.replace(val, arg[key[0]])
+    })
+    return text.trim()
   }
 
   constructor({

@@ -88,7 +88,9 @@ function QuestionaireBody() {
   return (
     <div className="questionaire--body mx-auto max-w-md px-4 pb-4">
       <div className="mb-8 mt-4">
-        <h2 className="text-2xl font-bold">{questionnaire.question.text}</h2>
+        <h2 className="text-2xl font-bold">
+          {questionnaire.question.getText(questionnaire.meta)}
+        </h2>
         <p className="mt-7 text-lg empty:hidden">
           {questionnaire.question.description}
         </p>
@@ -107,7 +109,8 @@ function QuestionaireBody() {
                   ? dispatch(
                       select({
                         question: option.next,
-                        asnwer: [questionnaire.question.text, option.text]
+                        asnwer: [questionnaire.question.text, option.text],
+                        meta: option.meta
                       })
                     )
                   : finish()
