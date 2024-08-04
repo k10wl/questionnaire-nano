@@ -11,9 +11,11 @@ export class Choice {
     if (!this.next) {
       return
     }
-    const next = this.next.clone()
-    next.prev = prev
-    this.next = next
+    if (this.next.prev) {
+      const next = this.next.clone()
+      this.next = next
+    }
+    this.next.prev = prev
   }
 }
 
