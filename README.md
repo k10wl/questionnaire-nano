@@ -18,3 +18,10 @@ Build:
 ```bash
 npm run build
 ```
+
+___
+
+Aight, not gonna lie, I ran out of time on this project (but met the deadline and requirement).
+Just keep in mind, some of the decisions were made to speed up development process,
+such as questionnaire lib.
+If I had more time - I would come up with a better solution in some places.
