@@ -141,3 +141,5 @@ export default function Home() {
     </main>
   )
 }
+
+// it is static by nature, why getStaticPath?
