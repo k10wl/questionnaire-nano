@@ -41,6 +41,13 @@ body {
     color: white !important;
 }
 
+p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 25.2px;
+    margin-top: 20px;
+}
+
 button {
     color: #6A3AA2 !important;
 }
@@ -82,6 +89,9 @@ function QuestionaireBody() {
     <div className="questionaire--body mx-auto max-w-md px-4 pb-4">
       <div className="mb-8 mt-4">
         <h2 className="text-2xl font-bold">{questionnaire.question.text}</h2>
+        <p className="mt-7 text-lg empty:hidden">
+          {questionnaire.question.description}
+        </p>
       </div>
       <ul className="mt-8 grid gap-5">
         {questionnaire.question.options.map((option, index) => (
@@ -125,7 +135,7 @@ function Questionaire() {
 export default function Home() {
   return (
     <main
-      className={`flex min-h-dvh min-h-screen flex-col ${openSans.className}`}
+      className={`flex min-h-dvh min-h-screen flex-col text-center ${openSans.className}`}
     >
       <Questionaire />
     </main>

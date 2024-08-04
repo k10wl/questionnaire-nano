@@ -12,7 +12,7 @@ export class Choice {
       return
     }
     if (this.next.prev) {
-      const next = this.next.clone()
+      const next = this.next.shallowCopy()
       this.next = next
     }
     this.next.prev = prev
@@ -21,18 +21,39 @@ export class Choice {
 
 export class Question {
   text: string
+  description?: string
   options: Choice[]
   prev?: Question
   special?: boolean
 
-  clone(): Question {
-    return new Question(this.text, this.options, this.special)
+  shallowCopy(): Question {
+    return new Question({
+      text: this.text,
+      description: this.description,
+      options: this.options,
+      prev: this.prev,
+      special: this.special
+    })
   }
 
-  constructor(text: string, options: Choice[], special?: boolean) {
+  constructor({
+    text,
+    description,
+    options,
+    prev,
+    special
+  }: {
+    text: string
+    description?: string
+    options: Choice[]
+    prev?: Question
+    special?: boolean
+  }) {
     this.text = text
+    this.description = description
+    this.prev = prev
+    this.special = special
     this.options = options
     this.options.forEach((option) => option.setPrev(this))
-    this.special = special
   }
 }
